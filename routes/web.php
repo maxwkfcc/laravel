@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+Route::get('/', [PagesController::class, 'index'])->name('pages.index');
+Route::get('/about', [PagesController::class, 'about'])->name('pages.about');
+
+Route::get('products', [ProductsController::class, 'index'])->name('nameofproductpage');
+
+Route::get('products/about', [ProductsController::class, 'about']);
+
+Route::get('products/{id}', [ProductsController::class, 'show'])->where('id','[0-9]+');
+
+Route::get('products/showbyname/{name}', [ProductsController::class, 'showbyname'])->where('name', '[a-zA-Z]');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::get('/users', function() {
+    return 'HI I M HERE';
+});
+
+Route::get('/usersjson', function() {
+    return response()->json([
+        'course'=>'testing',
+        'name'=>'max'
+    ]);
+});
+
+Route::get('usersredirect', function () {
+    return redirect('/');
+});
+
+
 
 require __DIR__.'/auth.php';
