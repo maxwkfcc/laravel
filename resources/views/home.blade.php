@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    This is a home page
+    <p>This is a home page</p>
+    
 </body>
 </html>

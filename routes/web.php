@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,9 @@ Route::get('/usersjson', function() {
 Route::get('usersredirect', function () {
     return redirect('/');
 });
+
+
+Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 
 
 
